@@ -44,11 +44,10 @@ public class ChatView {
                             System.out.println("\t\t3.群发消息");
                             System.out.println("\t\t4.发送文件");
                             System.out.println("\t\t9.退出系统");
-                            System.out.print("请输入你的选择：");
                             key = scanner.next();
                             switch (key) {
                                 case "1":
-                                    System.out.println("显示在线人数");
+                                    userClientService.onlineUser(userId);
                                     break;
                                 case "2":
                                     System.out.println("私聊消息");
@@ -61,6 +60,7 @@ public class ChatView {
                                     break;
                                 case "9":
                                     System.out.println("退出系统");
+                                    userClientService.userExit();
                                     loop = false;
                                     break;
                             }

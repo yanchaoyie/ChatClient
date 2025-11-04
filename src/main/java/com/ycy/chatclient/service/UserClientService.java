@@ -45,4 +45,32 @@ public class UserClientService {
         }
         return flag;
     }
+
+    public void onlineUser(String userId) {
+        Message message = new Message();
+        message.setMesType(MessageType.MESSAGE_GET_ONLINE_FRIENDS);//把消息格式设置为请求在线用户
+        message.setSender(u.getUserId());//设置发送者
+        try {//得到放在集合里的线程类里的socket的OutputStream()
+            ObjectOutputStream oos = new
+                    ObjectOutputStream(ManageClientConnectServerThread.getClientConnectServerThread(u.getUserId()).getSocket().getOutputStream());
+            oos.writeObject(message);//发送请求
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void userExit(){
+        System.out.println("用户退出程序");
+        Message message = new Message();
+        message.setSender(u.getUserId());
+        message.setMesType(MessageType.MESSAGE_USER_EXIT);
+        try {
+            ObjectOutputStream ous = new ObjectOutputStream(socket.getOutputStream());//发送关闭消息
+            ous.writeObject(message);
+            System.out.println("用户退出程序");
+            System.exit(0);//结束客户端主进程
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }
