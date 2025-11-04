@@ -7,6 +7,10 @@ import java.io.Serializable;
 * 会在网络上以类的形式发送
 * */
 public class User implements Serializable {// 实现序列化在网络上传输
+    // 明确指定一个 serialVersionUID
+    // 这个值可以是任意的 long 类型数字，通常 IDE 可以帮你生成一个。
+    private static final long serialVersionUID = 1L;
+
     private String userId;
     private String password;
 

@@ -1,10 +1,13 @@
 package com.ycy.chatclient.view;
 
+import com.ycy.chatclient.service.UserClientService;
+
 import java.util.Scanner;
 
 public class ChatView {
     private boolean loop = true;
     private String key;
+    private UserClientService userClientService = new UserClientService();
 
     public static void main(String[] args) {
         new ChatView().mainView();
@@ -32,7 +35,7 @@ public class ChatView {
 
                     //把登录信息封装成User对象发送给服务器验证是否有该用户,创建一个类在包service里的UserClientService类
                     //在这个类里向服务器传输User类信息，用来判断用户是否登录成功
-                    if(true){
+                    if(userClientService.checkUser(userId, password)){
                         while (loop) {
                             //进入客户端二级菜单
                             System.out.println("==========欢迎(用户 " + userId + ")进入聊天系统==========");
