@@ -50,7 +50,12 @@ public class ChatView {
                                     userClientService.onlineUser(userId);
                                     break;
                                 case "2":
-                                    System.out.println("私聊消息");
+                                    System.out.println("私聊消息，请输入要私聊的用户");
+                                    String getter = scanner.next();
+                                    System.out.println("请输入要发送的信息");
+                                    String s = scanner.nextLine();
+                                    String message = scanner.nextLine();
+                                    userClientService.sendMessage(getter, message);
                                     break;
                                 case "3":
                                     System.out.println("群发消息");
